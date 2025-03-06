@@ -9,9 +9,10 @@ router.get("/test", (req, res) => {
 
 router.post('/posttest', (req, res) => {
     const username = req.body.username;
-    console.log(user.name);
+    console.log(username);
     res.send('your username is ' + username)
 })
+//UPDATE_USER
 router.put('/:id', verifyTokenandAuth, async (req, res) => {
     if (req.body.password) {
         req.body.password = CryptoJS.AES.encrypt(res.body.password, process.env.PASS_SEC)
@@ -29,10 +30,11 @@ router.put('/:id', verifyTokenandAuth, async (req, res) => {
         res.status(400).json(' not updated User')
     }
 })
+//DELETE USER
 router.delete('/:id', verifyTokenandAdmin, async (req, res) => {
     try {
        await User.findByIdAndDelete(req.params.id)
-        res.status(200).json(updatedUser)
+        res.status(200).json('User has been deleted !')
     } catch (err) {
         res.status(400).json(' not deleted User')
     }

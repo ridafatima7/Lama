@@ -18,7 +18,7 @@ const verifyTokenandAuth=(req,res,next)=>{
         if(req.user._id=== req.params.id || req.user.isAdmin){
         next();
         }else{
-        res.status(403).json('You are not alowedx to that ');
+        res.status(403).json('You are not alowed to that ');
         }
     })
 }
